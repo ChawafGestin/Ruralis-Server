@@ -9,20 +9,26 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 
 const app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+const PORT = process.env.PORT || 5000;
+
+//mongoDB
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://127.0.0.1:27017/ruralis', { useNewUrlParser: true });
+const connection = mongoose.connection;
+connection.once('open', function() {
+  console.log("MongoDB database connection established successfully");
+});
 
 // Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -43,6 +49,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen(PORT, function () {
+  console.log("Server is running on Port: " + PORT);
 });
 
 module.exports = app;

@@ -1,0 +1,25 @@
+openapi: 3.0.2
+info:
+  version: "1.0.0"
+  title: "Ruralis"
+
+servers:
+  - url: http://localhost:5000
+
+paths:
+  /api/public/create:
+    post:
+      summary: Create a game of Ruralis
+      security: []   # No security
+      tags:
+        - users
+      requestBody:
+        description: User details
+        required: true
+        content:
+          application/json:
+            schema:
+
+      responses:
+        '201':
+          description: Create successfull
