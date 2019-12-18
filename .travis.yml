@@ -1,3 +1,10 @@
 language: node_js
 node_js:
  - "node"
+dist: trusty
+services: mongodb
+install:
+ - npm install -g nyc mocha mocha-lcov-reporter supertest
+script:
+ - npm i
+ - npm test

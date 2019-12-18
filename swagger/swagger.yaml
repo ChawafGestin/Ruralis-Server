@@ -7,19 +7,40 @@ servers:
   - url: http://localhost:5000
 
 paths:
-  /api/public/create:
+  /api/public/game:
     post:
       summary: Create a game of Ruralis
       security: []   # No security
       tags:
-        - users
+        - games
       requestBody:
         description: User details
         required: true
         content:
           application/json:
             schema:
-
+              type: object
+              properties:
+                scenario:
+                  type: integer
+                  example:
+                    4
+                players:
+                  type: array
+                  minLength: 5
+                  maxLength: 7
+                  example:
+                    - 5
+                    - 4
+                    - 2
+                    - 3
+                    - 7
+                  items:
+                    type: integer
       responses:
         '201':
-          description: Create successfull
+          description: Create a game successfully
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error

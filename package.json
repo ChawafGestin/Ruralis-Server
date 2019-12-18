@@ -3,14 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "test": "mocha --timeout=10000 --recursive --exit"
   },
   "dependencies": {
+    "body-parser": "latest",
     "clean-css": ">=4.1.11",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "mocha": "^6.2.2",
     "mongoose": "^5.8.1",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.2",
@@ -18,6 +21,10 @@
     "swagger-ui-express": "^4.1.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "express-validator": "^6.3.0",
+    "mongoose-auto-increment": "^5.0.1",
+    "supertest": "^4.0.2",
     "yamljs": "^0.3.0"
   }
 }
