@@ -40,3 +40,7 @@ paths:
       responses:
         '201':
           description: Create a game successfully
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
