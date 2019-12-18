@@ -10,7 +10,11 @@ exports.createGame = async (data) => {
     try {
         const game = new Game({
             scenario: data.scenario,
-            players: data.players
+            players: data.players,
+            tempsTravail: 70,
+            production:0,
+            environnement: 0,
+            ancrageSocial: 0
         });
         return await game.save();
     } catch (err) {

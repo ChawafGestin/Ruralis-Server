@@ -23,12 +23,20 @@ paths:
               properties:
                 scenario:
                   type: integer
+                  example:
+                    4
                 players:
                   type: array
+                  minLength: 5
+                  maxLength: 7
+                  example:
+                    - 5
+                    - 4
+                    - 2
+                    - 3
+                    - 7
                   items:
                     type: integer
-
-
       responses:
         '201':
-          description: Create successfull
+          description: Create a game successfully
