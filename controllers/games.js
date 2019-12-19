@@ -38,3 +38,22 @@ exports.addIAE = async (idGame, IAEs) => {
         throw new MyError(500, 'Internal server error');
     }
 };
+
+// ======================== //
+// ==== Put functions ===== //
+// ======================== //
+
+exports.startGame = async (idGame) => {
+    try {
+        const game = await Game.findById(idGame);
+        if (!game) {
+            throw new MyError(404, 'Game does not exist')
+        }
+        game.step = 1;
+        game.numTour = 1;
+        return await game.save();
+    } catch (err) {
+        if (err.status) throw err;
+        throw new MyError(500, 'Internal server error');
+    }
+};
