@@ -10,7 +10,10 @@ const createGame = [
 ];
 
 const createIAE = [
-
+    check('IAEs')
+        .isArray(),
+    // check('idGame')
+    //     .isInt()
 ];
 
 module.exports = {

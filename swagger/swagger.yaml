@@ -44,3 +44,56 @@ paths:
           description: Invalid form data
         '500':
           description: Internal Server Error
+
+  /api/public/game/{idGame}/IAE:
+    post:
+      summary: Add some IAEs to a game
+      security: []   # No security
+      tags:
+        - games
+      parameters:
+        - name: idGame
+          in: path
+          description: game ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Array of IAE
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                IAEs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      IAE:
+                        type: integer
+                        example:
+                          5
+                      coords:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            x:
+                              type: integer
+                              example:
+                                52
+                            y:
+                              type: integer
+                              example:
+                                43
+      responses:
+        '201':
+          description: IAEs successfully added to the game
+        '404':
+          description: Game does not exist
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error

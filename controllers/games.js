@@ -30,7 +30,7 @@ exports.addIAE = async (idGame, IAEs) => {
         if (!game) {
             return new MyError(404, 'Game does not exist')
         }
-        game.update({$push: {IAE : {$each: IAEs}}});
+        game.implementedIAE = game.implementedIAE.concat(IAEs);
         return await game.save();
     } catch (err) {
         if (err.status) throw err;

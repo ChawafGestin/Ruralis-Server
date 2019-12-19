@@ -13,7 +13,7 @@ const GameSchema = new Schema({
     scenario: Number,
     players: [Number],
     victory: Boolean,
-    implementedIAE: [{IAE: Number, coords: [{x: Schema.Types.Decimal128, y: Schema.Types.Decimal128}]}],
+    implementedIAE: [{IAE: Number, coords: [{x: Number, y: Number}]}],
     cardsPicked: [Number],
     actionsDone: [Number],
 });

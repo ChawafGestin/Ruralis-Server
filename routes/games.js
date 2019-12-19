@@ -25,7 +25,7 @@ module.exports = (router) => {
                 return res.status(422).json({error: 'Invalid form data'});
             }
             try {
-                const game = await gameController.addIAE(req.param.idGame, req.body.IAEs);
+                const game = await gameController.addIAE(req.params.idGame, req.body.IAEs);
                 res.status(201).send({message: 'IAEs successfully added to the game', game});
             } catch (e) {
                 res.status(e.status).send({error: e.message});
