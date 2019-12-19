@@ -17,7 +17,20 @@ module.exports = (router) => {
             } catch (e) {
                 res.status(e.status).send({error: e.message});
             }
-        });
+        })
+
+        .post('/game/:idGame/IAE', gameValidator.createIAE, async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({error: 'Invalid form data'});
+            }
+            try {
+                const game = await gameController.addIAE(req.param.idGame, req.body.IAEs);
+                res.status(201).send({message: 'IAEs successfully added to the game', game});
+            } catch (e) {
+                res.status(e.status).send({error: e.message});
+            }
+        })
 };
 
 

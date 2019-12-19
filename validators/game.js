@@ -9,6 +9,11 @@ const createGame = [
 
 ];
 
+const createIAE = [
+
+];
+
 module.exports = {
     createGame,
+    createIAE
 };
