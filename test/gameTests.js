@@ -62,7 +62,7 @@ describe('POST /api/public/game/:idGame/IAE', () => {
     });
 });
 
-describe('POST /api/public/game/:idGame/start', () => {
+describe('PUT /api/public/game/:idGame/start', () => {
     it('should return 201 OK ', (done) => {
         request(app)
             .put(`/api/public/game/${idGame}/start`)
