@@ -20,7 +20,7 @@ exports.createGame = async (data) => {
         return await game.save();
     } catch (err) {
         if (err.status) throw err;
-        return new MyError(500, 'Internal server error');
+        throw new MyError(500, 'Internal server error');
     }
 };
 
@@ -28,12 +28,13 @@ exports.addIAE = async (idGame, IAEs) => {
     try {
         const game = await Game.findById(idGame);
         if (!game) {
-            return new MyError(404, 'Game does not exist')
+            throw new MyError(404, 'Game does not exist')
         }
         game.implementedIAE = game.implementedIAE.concat(IAEs);
+        game.step = 2;
         return await game.save();
     } catch (err) {
         if (err.status) throw err;
-        return new MyError(500, 'Internal server error');
+        throw new MyError(500, 'Internal server error');
     }
 };
