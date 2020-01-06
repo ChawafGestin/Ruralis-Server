@@ -5,6 +5,7 @@ const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger/swagger.yaml');
 
 const createError = require('http-errors');
+const cors = require('cors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -23,6 +24,8 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 5000;
 
+app.use(cors());
+app.options("*", cors());
 
 
 
