@@ -12,11 +12,19 @@ const createGame = [
 const createIAE = [
     check('IAEs')
         .isArray(),
-    // check('idGame')
-    //     .isInt()
+    check('idGame')
+        .not().isEmpty()
+        .isInt()
+];
+
+const checkIdGame = [
+    check('idGame')
+        .not().isEmpty()
+        .isInt()
 ];
 
 module.exports = {
     createGame,
-    createIAE
+    createIAE,
+    checkIdGame
 };

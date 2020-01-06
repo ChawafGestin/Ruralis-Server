@@ -61,3 +61,28 @@ describe('POST /api/public/game/:idGame/IAE', () => {
             .expect(404, done)
     });
 });
+
+describe('PUT /api/public/game/:idGame/start', () => {
+    it('should return 201 OK ', (done) => {
+        request(app)
+            .put(`/api/public/game/${idGame}/start`)
+            .expect('Content-Type', /json/)
+            .expect(201, (err, res) => {
+                expect(res.body.game).to.not.be.undefined;
+                expect(res.body.game.numTour === 1);
+                done();
+            });
+    });
+    it('should return 422 invalid data', (done) => {
+        request(app)
+            .put(`/api/public/game/sdcsc/start`)
+            .expect('Content-Type', /json/)
+            .expect(422, done)
+    });
+    it('should return 404 ', (done) => {
+        request(app)
+            .put(`/api/public/game/666666/start`)
+            .expect('Content-Type', /json/)
+            .expect(404, done)
+    });
+});

@@ -97,3 +97,26 @@ paths:
           description: Invalid form data
         '500':
           description: Internal Server Error
+
+  /api/public/game/{idGame}/start:
+    put:
+      summary: Start a game
+      security: []   # No security
+      tags:
+        - games
+      parameters:
+        - name: idGame
+          in: path
+          description: game ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Start a game successfully
+        '404':
+          description: Game does not exist
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
