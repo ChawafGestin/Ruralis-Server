@@ -35,11 +35,24 @@ module.exports = (router) => {
         .put('/game/:idGame/start', gameValidator.checkIdGame, async (req, res) => {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(422).json({error: 'Invalid form data'});
+                return res.status(422).json({error: 'Invalid id'});
             }
             try {
                 const game = await gameController.startGame(req.params.idGame);
                 res.status(201).send({message: 'Game successfully started', game});
+            } catch (e) {
+                res.status(e.status).send({error: e.message});
+            }
+        })
+
+        .get('/game/:idGame', gameValidator.checkIdGame, async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({error: 'Invalid id'});
+            }
+            try {
+                const game = await gameController.getGame(req.params.idGame);
+                res.status(201).send({message: 'Game successfully fetched', game});
             } catch (e) {
                 res.status(e.status).send({error: e.message});
             }
