@@ -84,11 +84,11 @@ paths:
                         items:
                           type: object
                           properties:
-                            x:
+                            lat:
                               type: integer
                               example:
                                 52
-                            y:
+                            lng:
                               type: integer
                               example:
                                 43

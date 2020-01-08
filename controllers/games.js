@@ -60,6 +60,10 @@ exports.startGame = async (idGame) => {
     }
 };
 
+// ======================== //
+// ==== Get functions ===== //
+// ======================== //
+
 exports.getGame = async (idGame) => {
     try {
         const game = await Game.findById(idGame);
