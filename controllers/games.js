@@ -15,7 +15,8 @@ exports.createGame = async (data) => {
             production: 0,
             environnement: 0,
             ancrageSocial: 0,
-            numTour: 0
+            numTour: 0,
+            step:1
         });
         return await game.save();
     } catch (err) {
