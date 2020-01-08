@@ -24,13 +24,14 @@ exports.createGame = async (data) => {
     }
 };
 
-exports.addIAE = async (idGame, IAEs) => {
+exports.addIAE = async (idGame, IAEs, circleIAEs) => {
     try {
         const game = await Game.findById(idGame);
         if (!game) {
             throw new MyError(404, 'Game does not exist')
         }
         game.implementedIAE = game.implementedIAE.concat(IAEs);
+        game.circleIAEs = game.circleIAEs.concat(circleIAEs);
         game.step = 2;
         return await game.save();
     } catch (err) {

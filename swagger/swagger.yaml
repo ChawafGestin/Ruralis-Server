@@ -71,10 +71,14 @@ paths:
                   items:
                     type: object
                     properties:
-                      IAE:
+                      IAEGroup:
                         type: integer
                         example:
                           5
+                      IAEType:
+                        type: integer
+                        example:
+                          21
                       coords:
                         type: array
                         items:
@@ -88,6 +92,27 @@ paths:
                               type: integer
                               example:
                                 43
+                circleIAEs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      IAEGroup:
+                        type: integer
+                        example:
+                          5
+                      IAEType:
+                        type: integer
+                        example:
+                          21
+                      center:
+                        type: integer
+                        example:
+                          42
+                      radius:
+                        type: integer
+                        example:
+                          36
       responses:
         '201':
           description: IAEs successfully added to the game

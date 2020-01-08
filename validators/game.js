@@ -12,6 +12,8 @@ const createGame = [
 const createIAE = [
     check('IAEs')
         .isArray(),
+    check('circleIAEs')
+        .isArray(),
     check('idGame')
         .not().isEmpty()
         .isInt()

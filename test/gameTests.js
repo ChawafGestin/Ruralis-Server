@@ -38,11 +38,13 @@ describe('POST /api/public/game/:idGame/IAE', () => {
     it('should return 201 OK ', (done) => {
         request(app)
             .post(`/api/public/game/${idGame}/IAE`)
-            .send({IAEs: [{IAE: 4, coords: [{x: 45, y: 22}]}]})
+            .send({IAEs: [{IAEGroup: 2, IAEType: 4, coords: [{x: 45, y: 22}]}], circleIAEs: [{IAEGroup: 2, IAEType: 4, center: 3, radius: 1}]})
             .expect('Content-Type', /json/)
             .expect(201, (err, res) => {
                 expect(res.body.game).to.not.be.undefined;
                 expect(res.body.game.implementedIAE).lengthOf(1);
+                expect(res.body.game.circleIAEs).lengthOf(1);
+                expect(res.body.game.circleIAEs[0].IAEType === 4);
                 done();
             });
     });
@@ -56,7 +58,7 @@ describe('POST /api/public/game/:idGame/IAE', () => {
     it('should return 404 ', (done) => {
         request(app)
             .post(`/api/public/game/66666/IAE`)
-            .send({IAEs: [{IAE: 4, coords: [{x: 45, y: 22}]}]})
+            .send({IAEs: [{IAE: 4, coords: [{x: 45, y: 22}]}], circleIAEs:[]})
             .expect('Content-Type', /json/)
             .expect(404, done)
     });
