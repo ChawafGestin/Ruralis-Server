@@ -25,8 +25,27 @@ const checkIdGame = [
         .isInt()
 ];
 
+const scoring = [
+    check('idGame')
+        .not().isEmpty()
+        .isInt(),
+    check('production')
+        .not().isEmpty()
+        .isInt(),
+    check('tempsTravail')
+        .not().isEmpty()
+        .isInt(),
+    check('ancrageSocial')
+        .not().isEmpty()
+        .isInt(),
+    check('environnement')
+        .not().isEmpty()
+        .isInt(),
+];
+
 module.exports = {
     createGame,
     createIAE,
-    checkIdGame
+    checkIdGame,
+    scoring
 };

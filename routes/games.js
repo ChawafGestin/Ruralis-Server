@@ -57,6 +57,19 @@ module.exports = (router) => {
                 res.status(e.status).send({error: e.message});
             }
         })
+
+        .put('/game/:idGame/scoring', gameValidator.scoring, async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({error: 'Invalid form data'});
+            }
+            try {
+                const game = await gameController.scoring(req.params.idGame, req.body);
+                res.status(201).send({message: 'Scoring successfully updated', game});
+            } catch (e) {
+                res.status(e.status).send({error: e.message});
+            }
+         })
 };
 
 

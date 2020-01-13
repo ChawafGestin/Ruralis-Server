@@ -113,3 +113,40 @@ describe('GET /api/public/game/:idGame/start', () => {
             .expect(404, done)
     });
 });
+
+describe('PUT /api/public/game/:idGame/scoring', () => {
+    it('should return 201 OK ', (done) => {
+        request(app)
+            .put(`/api/public/game/${idGame}/scoring`)
+            .send({production: 42, tempsTravail: 21, ancrageSocial: 12, environnement: 23})
+            .expect('Content-Type', /json/)
+            .expect(201, (err, res) => {
+                expect(res.body.game).to.not.be.undefined;
+                expect(res.body.game.tempsTravail === 21);
+                expect(res.body.game.production === 42);
+                expect(res.body.game.ancrageSocial === 12);
+                expect(res.body.game.environnement === 23);
+                done();
+            });
+    });
+    it('should return 422 invalid data', (done) => {
+        request(app)
+            .put(`/api/public/game/sdcsc/scoring`)
+            .expect('Content-Type', /json/)
+            .expect(422, done)
+    });
+    it('should return 422 invalid data', (done) => {
+        request(app)
+            .put(`/api/public/game/${idGame}/scoring`)
+            .send({fabrki: 42, tempsTravail: 21, ancrageSocial: 12, environnement: 23})
+            .expect('Content-Type', /json/)
+            .expect(422, done)
+    });
+    it('should return 404 ', (done) => {
+        request(app)
+            .put(`/api/public/game/666666/scoring`)
+            .send({production: 42, tempsTravail: 21, ancrageSocial: 12, environnement: 23})
+            .expect('Content-Type', /json/)
+            .expect(404, done)
+    });
+});

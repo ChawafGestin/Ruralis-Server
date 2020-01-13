@@ -60,6 +60,23 @@ exports.startGame = async (idGame) => {
     }
 };
 
+exports.scoring = async (idGame, data) => {
+    try {
+        const game = await Game.findById(idGame);
+        if (!game) {
+            throw new MyError(404, 'Game does not exist')
+        }
+        game.production = data.production;
+        game.environnement = data.environnement;
+        game.tempsTravail = data.tempsTravail;
+        game.ancrageSocial = data.ancrageSocial;
+        return await game.save();
+    } catch (err) {
+        if (err.status) throw err;
+        throw new MyError(500, 'Internal server error');
+    }
+};
+
 // ======================== //
 // ==== Get functions ===== //
 // ======================== //
