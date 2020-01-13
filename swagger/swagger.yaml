@@ -109,10 +109,7 @@ paths:
                         type: integer
                         example:
                           42
-                      radius:
-                        type: integer
-                        example:
-                          36
+
       responses:
         '201':
           description: IAEs successfully added to the game

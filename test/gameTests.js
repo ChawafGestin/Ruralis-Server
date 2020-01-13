@@ -38,7 +38,7 @@ describe('POST /api/public/game/:idGame/IAE', () => {
     it('should return 201 OK ', (done) => {
         request(app)
             .post(`/api/public/game/${idGame}/IAE`)
-            .send({IAEs: [{IAEGroup: 2, IAEType: 4, coords: [{x: 45, y: 22}]}], circleIAEs: [{IAEGroup: 2, IAEType: 4, center: 3, radius: 1}]})
+            .send({IAEs: [{IAEGroup: 2, IAEType: 4, coords: [{x: 45, y: 22}]}], circleIAEs: [{IAEGroup: 2, IAEType: 4, center: 3}]})
             .expect('Content-Type', /json/)
             .expect(201, (err, res) => {
                 expect(res.body.game).to.not.be.undefined;
