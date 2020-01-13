@@ -168,3 +168,51 @@ paths:
           description: Invalid form data
         '500':
           description: Internal Server Error
+
+
+  /api/public/game/{idGame}/scoring:
+    put:
+      summary: Update scoring of a game
+      security: []   # No security
+      tags:
+        - games
+      parameters:
+        - name: idGame
+          in: path
+          description: game ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: new scores
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                production:
+                  type: integer
+                  example:
+                    4
+                tempsTravail:
+                  type: integer
+                  example:
+                    23
+                environnement:
+                  type: integer
+                  example:
+                    18
+                ancrageSocial:
+                  type: integer
+                  example:
+                    56
+      responses:
+        '201':
+          description: Scores successfully updated
+        '404':
+          description: Game does not exist
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
