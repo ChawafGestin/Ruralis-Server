@@ -70,6 +70,19 @@ module.exports = (router) => {
                 res.status(e.status).send({error: e.message});
             }
          })
+
+        .post('/game/:idGame/action', gameValidator.addAction, async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({error: 'Invalid form data'});
+            }
+            try {
+                const game = await gameController.addAction(req.params.idGame, req.body.action);
+                res.status(201).send({message: 'Action successfully added to the game', game});
+            } catch (e) {
+                res.status(e.status).send({error: e.message});
+            }
+        })
 };
 
 

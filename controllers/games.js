@@ -41,6 +41,23 @@ exports.addIAE = async (idGame, IAEs, circleIAEs) => {
     }
 };
 
+exports.addAction = async (idGame, numAction) => {
+    try {
+        const game = await Game.findById(idGame);
+        if (!game) {
+            throw new MyError(404, 'Game does not exist')
+        }
+        if (numAction !== -1) {
+            game.actionsDone.push(numAction);
+        }
+        game.step = 3;
+        return await game.save();
+    } catch (err) {
+        if (err.status) throw err;
+        throw new MyError(500, 'Internal server error');
+    }
+};
+
 // ======================== //
 // ==== Put functions ===== //
 // ======================== //
