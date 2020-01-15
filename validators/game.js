@@ -31,16 +31,16 @@ const scoring = [
         .isInt(),
     check('production')
         .not().isEmpty()
-        .isInt(),
+        .isNumeric(),
     check('tempsTravail')
         .not().isEmpty()
-        .isInt(),
+        .isNumeric(),
     check('ancrageSocial')
         .not().isEmpty()
-        .isInt(),
+        .isNumeric(),
     check('environnement')
         .not().isEmpty()
-        .isInt(),
+        .isNumeric(),
 ];
 
 module.exports = {
