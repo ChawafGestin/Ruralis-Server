@@ -43,9 +43,19 @@ const scoring = [
         .isNumeric(),
 ];
 
+const addAction = [
+    check('idGame')
+        .not().isEmpty()
+        .isInt(),
+    check('action')
+        .not().isEmpty()
+        .isInt(),
+];
+
 module.exports = {
     createGame,
     createIAE,
     checkIdGame,
-    scoring
+    scoring,
+    addAction
 };

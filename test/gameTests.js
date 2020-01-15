@@ -150,3 +150,31 @@ describe('PUT /api/public/game/:idGame/scoring', () => {
             .expect(404, done)
     });
 });
+
+describe('POST /api/public/game/:idGame/action', () => {
+    it('should return 201 OK ', (done) => {
+        request(app)
+            .post(`/api/public/game/${idGame}/action`)
+            .send({action: 4})
+            .expect('Content-Type', /json/)
+            .expect(201, (err, res) => {
+                expect(res.body.game).to.not.be.undefined;
+                expect(res.body.game.actionsDone).lengthOf(1);
+                expect(res.body.game.step === 3);
+                done();
+            });
+    });
+    it('should return 422 invalid data', (done) => {
+        request(app)
+            .post(`/api/public/game/${idGame}/action`)
+            .expect('Content-Type', /json/)
+            .expect(422, done)
+    });
+    it('should return 404 ', (done) => {
+        request(app)
+            .post(`/api/public/game/66666/action`)
+            .send({action: 4})
+            .expect('Content-Type', /json/)
+            .expect(404, done)
+    });
+});
