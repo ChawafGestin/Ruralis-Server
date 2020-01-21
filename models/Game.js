@@ -13,8 +13,8 @@ const GameSchema = new Schema({
     scenario: Number,
     players: [Number],
     victory: Boolean,
-    implementedIAE: [{IAEGroup: Number, IAEType: Number, coords: [{lat: Number, lng: Number}]}],
-    circleIAEs: [{IAEGroup: Number, IAEType:  Number, center: Number}] ,
+    implementedIAE: [{IAEGroup: Number, IAEType: Number, layerType: String, unity: Number, coords: [{lat: Number, lng: Number}]}],
+    circleIAEs: [{IAEGroup: Number, IAEType:  Number, center: Number, unity: Number}] ,
     cardsPicked: [Number],
     actionsDone: [Number],
 });
