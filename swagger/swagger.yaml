@@ -79,6 +79,14 @@ paths:
                         type: integer
                         example:
                           21
+                      unity:
+                        type: integer
+                        example:
+                          4
+                      layerType:
+                        type: string
+                        example:
+                          polygon
                       coords:
                         type: array
                         items:
