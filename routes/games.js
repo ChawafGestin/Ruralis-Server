@@ -83,6 +83,15 @@ module.exports = (router) => {
                 res.status(e.status).send({error: e.message});
             }
         })
+
+        .get('/game',  async (req, res) => {
+            try {
+                const games = await gameController.getGames(req.body.ended);
+                res.status(201).send({message: 'Games successfully fetched', games});
+            } catch (e) {
+                res.status(e.status).send({error: e.message});
+            }
+        })
 };
 
 

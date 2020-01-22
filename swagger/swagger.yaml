@@ -44,6 +44,18 @@ paths:
           description: Invalid form data
         '500':
           description: Internal Server Error
+    get:
+      summary: Fetch all games
+      security: []   # No security
+      tags:
+        - games
+      responses:
+        '201':
+          description: Fetch games successfully
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
 
   /api/public/game/{idGame}/IAE:
     post:

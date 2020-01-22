@@ -178,3 +178,16 @@ describe('POST /api/public/game/:idGame/action', () => {
             .expect(404, done)
     });
 });
+
+describe('GET /api/public/game', () => {
+    it('should return 201 OK ', (done) => {
+        request(app)
+            .get(`/api/public/game`)
+            .expect('Content-Type', /json/)
+            .expect(201, (err, res) => {
+                expect(res.body.games).to.not.be.undefined;
+                expect(res.body.games).lengthOf(1);
+                done();
+            });
+    });
+});

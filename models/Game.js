@@ -9,6 +9,7 @@ const GameSchema = new Schema({
     environnement: Number,
     ancrageSocial: Number,
     numTour: Number,
+    ended: Boolean,
     step: Number,
     scenario: Number,
     players: [Number],

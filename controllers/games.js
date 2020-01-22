@@ -16,7 +16,8 @@ exports.createGame = async (data) => {
             environnement: 0,
             ancrageSocial: 0,
             numTour: 0,
-            step:1
+            step:1,
+            ended: false
         });
         return await game.save();
     } catch (err) {
@@ -105,6 +106,15 @@ exports.getGame = async (idGame) => {
             throw new MyError(404, 'Game does not exist')
         }
         return game;
+    } catch (err) {
+        if (err.status) throw err;
+        throw new MyError(500, 'Internal server error');
+    }
+};
+
+exports.getGames = async(ended) => {
+    try {
+        return await Game.find();
     } catch (err) {
         if (err.status) throw err;
         throw new MyError(500, 'Internal server error');
