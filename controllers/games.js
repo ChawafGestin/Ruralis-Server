@@ -112,7 +112,7 @@ exports.getGame = async (idGame) => {
     }
 };
 
-exports.getGames = async(ended) => {
+exports.getGames = async() => {
     try {
         return await Game.find();
     } catch (err) {
