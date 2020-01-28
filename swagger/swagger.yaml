@@ -44,3 +44,227 @@ paths:
           description: Invalid form data
         '500':
           description: Internal Server Error
+    get:
+      summary: Fetch all games
+      security: []   # No security
+      tags:
+        - games
+      responses:
+        '201':
+          description: Fetch games successfully
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
+
+  /api/public/game/{idGame}/IAE:
+    post:
+      summary: Add some IAEs to a game
+      security: []   # No security
+      tags:
+        - games
+      parameters:
+        - name: idGame
+          in: path
+          description: game ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Array of IAE
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                IAEs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      IAEGroup:
+                        type: integer
+                        example:
+                          5
+                      IAEType:
+                        type: integer
+                        example:
+                          21
+                      unity:
+                        type: integer
+                        example:
+                          4
+                      layerType:
+                        type: string
+                        example:
+                          polygon
+                      coords:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            lat:
+                              type: integer
+                              example:
+                                52
+                            lng:
+                              type: integer
+                              example:
+                                43
+                circleIAEs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      IAEGroup:
+                        type: integer
+                        example:
+                          5
+                      IAEType:
+                        type: integer
+                        example:
+                          21
+                      center:
+                        type: integer
+                        example:
+                          42
+
+      responses:
+        '201':
+          description: IAEs successfully added to the game
+        '404':
+          description: Game does not exist
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
+
+  /api/public/game/{idGame}/start:
+    put:
+      summary: Start a game
+      security: []   # No security
+      tags:
+        - games
+      parameters:
+        - name: idGame
+          in: path
+          description: game ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Start a game successfully
+        '404':
+          description: Game does not exist
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
+
+  /api/public/game/{idGame}:
+    get:
+      summary: Fetch a game
+      security: []   # No security
+      tags:
+        - games
+      parameters:
+        - name: idGame
+          in: path
+          description: game ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Fetch a game successfully
+        '404':
+          description: Game does not exist
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
+
+
+  /api/public/game/{idGame}/scoring:
+    put:
+      summary: Update scoring of a game
+      security: []   # No security
+      tags:
+        - games
+      parameters:
+        - name: idGame
+          in: path
+          description: game ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: new scores
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                production:
+                  type: integer
+                  example:
+                    4
+                tempsTravail:
+                  type: integer
+                  example:
+                    23
+                environnement:
+                  type: integer
+                  example:
+                    18
+                ancrageSocial:
+                  type: integer
+                  example:
+                    56
+      responses:
+        '201':
+          description: Scores successfully updated
+        '404':
+          description: Game does not exist
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
+
+  /api/public/game/{idGame}/action:
+    post:
+      summary: Add and action to the game and pass to step 3
+      security: []   # No security
+      tags:
+        - games
+      parameters:
+        - name: idGame
+          in: path
+          description: game ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: action done
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: integer
+                  example:
+                    4
+      responses:
+        '201':
+          description: action successfully doned
+        '404':
+          description: Game does not exist
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error

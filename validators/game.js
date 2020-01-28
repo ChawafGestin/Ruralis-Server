@@ -9,6 +9,53 @@ const createGame = [
 
 ];
 
+const createIAE = [
+    check('IAEs')
+        .isArray(),
+    check('circleIAEs')
+        .isArray(),
+    check('idGame')
+        .not().isEmpty()
+        .isInt()
+];
+
+const checkIdGame = [
+    check('idGame')
+        .not().isEmpty()
+        .isInt()
+];
+
+const scoring = [
+    check('idGame')
+        .not().isEmpty()
+        .isInt(),
+    check('production')
+        .not().isEmpty()
+        .isNumeric(),
+    check('tempsTravail')
+        .not().isEmpty()
+        .isNumeric(),
+    check('ancrageSocial')
+        .not().isEmpty()
+        .isNumeric(),
+    check('environnement')
+        .not().isEmpty()
+        .isNumeric(),
+];
+
+const addAction = [
+    check('idGame')
+        .not().isEmpty()
+        .isInt(),
+    check('action')
+        .not().isEmpty()
+        .isInt(),
+];
+
 module.exports = {
     createGame,
+    createIAE,
+    checkIdGame,
+    scoring,
+    addAction
 };
