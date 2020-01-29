@@ -15,7 +15,7 @@ const GameSchema = new Schema({
     players: [Number],
     victory: Boolean,
     implementedIAE: [{IAEGroup: Number, IAEType: Number, layerType: String, unity: Number, coords: [{lat: Number, lng: Number}]}],
-    circleIAEs: [{IAEGroup: Number, IAEType:  Number, layerType: String, center: Number, unity: Number}] ,
+    circleIAEs: [{IAEGroup: Number, IAEType:  Number, layerType: String, center: {lat: Number, lng: Number}, unity: Number}] ,
     cardsPicked: [Number],
     actionsDone: [Number],
 });
