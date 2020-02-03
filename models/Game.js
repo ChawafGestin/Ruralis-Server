@@ -18,6 +18,7 @@ const GameSchema = new Schema({
     circleIAEs: [{IAEGroup: Number, IAEType:  Number, layerType: String, center: {lat: Number, lng: Number}, unity: Number}] ,
     cardsPicked: [Number],
     actionsDone: [Number],
+    victoryPlayers:[Number]
 });
 
 autoIncrement.initialize(mongoose.connection);
