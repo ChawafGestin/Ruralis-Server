@@ -52,10 +52,26 @@ const addAction = [
         .isInt(),
 ];
 
+const endGame = [
+    check('idGame')
+        .not().isEmpty()
+        .isInt(),
+    check('victory')
+        .not().isEmpty()
+        .isBoolean(),
+    check('victoryObjectif')
+        .not().isEmpty()
+        .isBoolean(),
+    check('victoryPlayers')
+        .not().isEmpty()
+        .isArray(),
+];
+
 module.exports = {
     createGame,
     createIAE,
     checkIdGame,
     scoring,
-    addAction
+    addAction,
+    endGame
 };
