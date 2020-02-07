@@ -67,11 +67,18 @@ const endGame = [
         .isArray(),
 ];
 
+const eventCards = [
+    check('cardsPicked')
+        .not().isEmpty()
+        .isArray({min:3, max:3}),
+];
+
 module.exports = {
     createGame,
     createIAE,
     checkIdGame,
     scoring,
     addAction,
-    endGame
+    endGame,
+    eventCards
 };

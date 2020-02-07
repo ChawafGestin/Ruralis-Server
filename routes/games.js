@@ -105,6 +105,20 @@ module.exports = (router) => {
                 res.status(e.status).send({error: e.message});
             }
         })
+
+        .put('/game/:idGame/eventcards', gameValidator.eventCards, async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(422).json({error: 'Invalid form data'});
+            }
+            try {
+                const game = await gameController.eventCards(req.params.idGame, req.body.cardsPicked);
+                res.status(201).send({message: 'Game is ended', game});
+            } catch (e) {
+                res.status(e.status).send({error: e.message});
+            }
+        })
+
 };
 
 
