@@ -65,7 +65,6 @@ const endGame = [
         .not().isEmpty()
         .isBoolean(),
     check('victoryPlayers')
-        .not().isEmpty()
         .isArray(),
 ];
 
