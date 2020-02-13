@@ -191,3 +191,72 @@ describe('GET /api/public/game', () => {
             });
     });
 });
+
+describe('PUT /api/public/game/:idGame/endgame', () => {
+    it('should return 201 OK ', (done) => {
+        request(app)
+            .put(`/api/public/game/${idGame}/endgame`)
+            .send({victoryObjectif: true, victoryPlayers: [5,3,1], victory: false})
+            .expect('Content-Type', /json/)
+            .expect(201, (err, res) => {
+                expect(res.body.game).to.not.be.undefined;
+                expect(res.body.game.ended);
+                expect(!res.body.game.victory);
+                done();
+            });
+    });
+    it('should return 422 invalid data', (done) => {
+        request(app)
+            .put(`/api/public/game/sdcsc/endgame`)
+            .expect('Content-Type', /json/)
+            .expect(422, done)
+    });
+    it('should return 422 invalid data', (done) => {
+        request(app)
+            .put(`/api/public/game/${idGame}/endgame`)
+            .send({fabrki: 42, tempsTravail: 21, ancrageSocial: 12, environnement: 23})
+            .expect('Content-Type', /json/)
+            .expect(422, done)
+    });
+    it('should return 404 ', (done) => {
+        request(app)
+            .put(`/api/public/game/666666/endgame`)
+            .send({victoryObjectif: true, victoryPlayers: [5,3,1], victory: false})
+            .expect('Content-Type', /json/)
+            .expect(404, done)
+    });
+});
+
+describe('PUT /api/public/game/:idGame/eventcards', () => {
+    it('should return 201 OK ', (done) => {
+        request(app)
+            .put(`/api/public/game/${idGame}/eventcards`)
+            .send({cardsPicked: [5,8,12]})
+            .expect('Content-Type', /json/)
+            .expect(201, (err, res) => {
+                expect(res.body.game).to.not.be.undefined;
+                expect(res.body.game.step === 1);
+                done();
+            });
+    });
+    it('should return 422 invalid data', (done) => {
+        request(app)
+            .put(`/api/public/game/sdcsc/eventcards`)
+            .expect('Content-Type', /json/)
+            .expect(422, done)
+    });
+    it('should return 422 invalid data', (done) => {
+        request(app)
+            .put(`/api/public/game/${idGame}/eventcards`)
+            .send({cardsPicked: true, tempsTravail: 21, ancrageSocial: 12, environnement: 23})
+            .expect('Content-Type', /json/)
+            .expect(422, done)
+    });
+    it('should return 404 ', (done) => {
+        request(app)
+            .put(`/api/public/game/666666/eventcards`)
+            .send({cardsPicked: [5,8,12]})
+            .expect('Content-Type', /json/)
+            .expect(404, done)
+    });
+});
