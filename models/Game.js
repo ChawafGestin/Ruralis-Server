@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const GameSchema = new Schema({
     production: Number,
+    name: String,
     tempsTravail: Number,
     environnement: Number,
     ancrageSocial: Number,

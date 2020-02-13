@@ -21,6 +21,10 @@ paths:
             schema:
               type: object
               properties:
+                name:
+                  type: string
+                  example:
+                    'jolie partie'
                 scenario:
                   type: integer
                   example:

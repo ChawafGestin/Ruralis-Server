@@ -5,8 +5,10 @@ const createGame = [
         .not().isEmpty()
         .isInt(),
     check('players')
-        .isArray({min:5, max:7})
-
+        .isArray({min:5, max:7}),
+    check('name')
+        .not().isEmpty()
+        .isString(),
 ];
 
 const createIAE = [

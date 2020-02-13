@@ -11,6 +11,7 @@ exports.createGame = async (data) => {
         const game = new Game({
             scenario: data.scenario,
             players: data.players,
+            name: data.name,
             tempsTravail: 70,
             production: 0,
             environnement: 0,

@@ -15,12 +15,13 @@ describe('POST /api/public/game', () => {
     it('should return 201 OK and create a game', (done) => {
         request(app)
             .post('/api/public/game')
-            .send({scenario: 2, players: [5, 4, 2, 1, 7]})
+            .send({name:'grande partie', scenario: 2, players: [5, 4, 2, 1, 7]})
             .expect('Content-Type', /json/)
             .expect(201, (err, res) => {
                 expect(res.body.game).to.not.be.undefined;
                 expect(res.body.game.players).lengthOf(5);
                 expect(res.body.game.cardsPicked).lengthOf(0);
+                expect(res.body.game.name === 'grande partie');
                 idGame = res.body.game._id;
                 done();
             });
