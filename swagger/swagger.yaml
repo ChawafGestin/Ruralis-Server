@@ -21,6 +21,10 @@ paths:
             schema:
               type: object
               properties:
+                name:
+                  type: string
+                  example:
+                    'jolie partie'
                 scenario:
                   type: integer
                   example:
@@ -259,6 +263,92 @@ paths:
                   type: integer
                   example:
                     4
+      responses:
+        '201':
+          description: action successfully doned
+        '404':
+          description: Game does not exist
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
+  /api/public/game/{idGame}/endgame:
+    put:
+      summary: End the game
+      security: []   # No security
+      tags:
+        - games
+      parameters:
+        - name: idGame
+          in: path
+          description: game ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: the differents victory
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                victory:
+                  type: boolean
+                  example: true
+                victoryObjectif:
+                  type: boolean
+                  example: true
+                victoryPlayers:
+                  type: array
+                  example:
+                    - 5
+                    - 4
+                    - 2
+                    - 3
+                    - 7
+                  items:
+                    type: integer
+      responses:
+        '201':
+          description: action successfully doned
+        '404':
+          description: Game does not exist
+        '422':
+          description: Invalid form data
+        '500':
+          description: Internal Server Error
+  /api/public/game/{idGame}/eventcards:
+    put:
+      summary: add event cards to the game and go to the next turn
+      security: []   # No security
+      tags:
+        - games
+      parameters:
+        - name: idGame
+          in: path
+          description: game ID
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: the event cards
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cardsPicked:
+                  type: array
+                  minLength: 3
+                  maxLength: 3
+                  example:
+                    - 5
+                    - 4
+                    - 2
+                  items:
+                    type: integer
       responses:
         '201':
           description: action successfully doned

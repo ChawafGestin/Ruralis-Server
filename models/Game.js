@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const GameSchema = new Schema({
     production: Number,
+    name: String,
     tempsTravail: Number,
     environnement: Number,
     ancrageSocial: Number,
@@ -15,9 +16,11 @@ const GameSchema = new Schema({
     players: [Number],
     victory: Boolean,
     implementedIAE: [{IAEGroup: Number, IAEType: Number, layerType: String, unity: Number, coords: [{lat: Number, lng: Number}]}],
-    circleIAEs: [{IAEGroup: Number, IAEType:  Number, layerType: String, center: Number, unity: Number}] ,
+    circleIAEs: [{IAEGroup: Number, IAEType:  Number, layerType: String, center: {lat: Number, lng: Number}, unity: Number}] ,
     cardsPicked: [Number],
     actionsDone: [Number],
+    victoryPlayers:[Number],
+    victoryObjectif: Boolean
 });
 
 autoIncrement.initialize(mongoose.connection);

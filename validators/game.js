@@ -5,8 +5,10 @@ const createGame = [
         .not().isEmpty()
         .isInt(),
     check('players')
-        .isArray({min:5, max:7})
-
+        .isArray({min:5, max:7}),
+    check('name')
+        .not().isEmpty()
+        .isString(),
 ];
 
 const createIAE = [
@@ -52,10 +54,32 @@ const addAction = [
         .isInt(),
 ];
 
+const endGame = [
+    check('idGame')
+        .not().isEmpty()
+        .isInt(),
+    check('victory')
+        .not().isEmpty()
+        .isBoolean(),
+    check('victoryObjectif')
+        .not().isEmpty()
+        .isBoolean(),
+    check('victoryPlayers')
+        .isArray(),
+];
+
+const eventCards = [
+    check('cardsPicked')
+        .not().isEmpty()
+        .isArray({min:3, max:3}),
+];
+
 module.exports = {
     createGame,
     createIAE,
     checkIdGame,
     scoring,
-    addAction
+    addAction,
+    endGame,
+    eventCards
 };
