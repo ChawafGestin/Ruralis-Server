@@ -1,6 +1,6 @@
 
 # RURALIS®
-![logo](public/ruralisLogo.png)
+![logo](public/stylesheets/ruralisLogo.png)
 
 Ruralis, un jeu pédagogique sur les infrastructures agro-écologiques
 
